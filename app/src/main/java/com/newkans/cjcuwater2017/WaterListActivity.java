@@ -44,6 +44,7 @@ public class WaterListActivity extends AppCompatActivity {
         Request request = new Request.Builder()
                 .url("http://chihsuan.github.io/data/data.json")
                 .build();
+
         //new call
         Call call = mOkHttpClient.newCall(request);
         //请求加入调度
@@ -59,23 +60,22 @@ public class WaterListActivity extends AppCompatActivity {
                 String data = response.body().string();
                 try {
                     mJsonObject = new JSONObject(data);
-                    Log.e("JSON", mJsonObject.getJSONObject("牡丹水庫").getString("percentage"));
                     runOnUiThread(new Runnable() {
                         public void run() {
                             try {
+                                Log.e("JSON", mJsonObject.getJSONObject("牡丹水庫").getString("percentage"));
                                 JSONArray keys = mJsonObject.names ();
-
                                 for (int i = 0; i < keys.length (); ++i) {
                                     mArrayList.add(keys.getString (i));
                                     mListAdapter.notifyDataSetChanged();
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
 
                     });
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();

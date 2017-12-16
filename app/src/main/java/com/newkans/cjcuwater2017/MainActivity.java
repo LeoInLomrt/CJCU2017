@@ -1,6 +1,5 @@
 package com.newkans.cjcuwater2017;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -32,58 +31,58 @@ public class MainActivity extends AppCompatActivity {
         mTextViewPercentage = findViewById(R.id.textView_percentage);
         mWaveLoadingView = (WaveLoadingView) findViewById(R.id.waveLoadingView);
 
-        new Thread(new Runnable(){
-            @Override
-            public void run() {
-                OkHttpClient client = new OkHttpClient();
-
-                Request request = new Request.Builder()
-                        .url("http://chihsuan.github.io/data/data.json")
-                        .build();
-
-                try {
-                    Response response = client.newCall(request).execute();
-
-                    String data = response.body().string();
-                    Log.e("AAA", data);
-                    mJsonObject = new JSONObject(data);
-
-                    Log.e("JSON", mJsonObject.getJSONObject("牡丹水庫").getString("percentage"));
-
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            try {
-                                mTextViewPercentage.setText(mJsonObject.getJSONObject("牡丹水庫").getString("percentage"));
-                                mWaveLoadingView.setShapeType(WaveLoadingView.ShapeType.CIRCLE);
-                                mWaveLoadingView.setCenterTitle(mJsonObject.getJSONObject("牡丹水庫").getString("percentage"));
-                                mWaveLoadingView.setCenterTitleColor(Color.WHITE);
-                                mWaveLoadingView.setBottomTitleSize(18);
-                                mWaveLoadingView.setProgressValue(mJsonObject.getJSONObject("牡丹水庫").getInt("percentage"));
-                                mWaveLoadingView.setBorderWidth(10);
-                                mWaveLoadingView.setAmplitudeRatio(60);
-                                mWaveLoadingView.setWaveColor(Color.GRAY);
-                                mWaveLoadingView.setBorderColor(Color.GRAY);
-                                mWaveLoadingView.setAnimDuration(3000);
-                                mWaveLoadingView.pauseAnimation();
-                                mWaveLoadingView.resumeAnimation();
-                                mWaveLoadingView.cancelAnimation();
-                                mWaveLoadingView.startAnimation();
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                    });
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+//        new Thread(new Runnable(){
+//            @Override
+//            public void run() {
+//                OkHttpClient client = new OkHttpClient();
+//
+//                Request request = new Request.Builder()
+//                        .url("http://chihsuan.github.io/data/data.json")
+//                        .build();
+//
+//                try {
+//                    Response response = client.newCall(request).execute();
+//
+//                    String data = response.body().string();
+//                    Log.e("AAA", data);
+//                    mJsonObject = new JSONObject(data);
+//
+//                    Log.e("JSON", mJsonObject.getJSONObject("牡丹水庫").getString("percentage"));
+//
+//                    runOnUiThread(new Runnable() {
+//                        public void run() {
+//                            try {
+//                                mTextViewPercentage.setText(mJsonObject.getJSONObject("牡丹水庫").getString("percentage"));
+//                                mWaveLoadingView.setShapeType(WaveLoadingView.ShapeType.CIRCLE);
+//                                mWaveLoadingView.setCenterTitle(mJsonObject.getJSONObject("牡丹水庫").getString("percentage"));
+//                                mWaveLoadingView.setCenterTitleColor(Color.WHITE);
+//                                mWaveLoadingView.setBottomTitleSize(18);
+//                                mWaveLoadingView.setProgressValue(mJsonObject.getJSONObject("牡丹水庫").getInt("percentage"));
+//                                mWaveLoadingView.setBorderWidth(10);
+//                                mWaveLoadingView.setAmplitudeRatio(60);
+//                                mWaveLoadingView.setWaveColor(Color.GRAY);
+//                                mWaveLoadingView.setBorderColor(Color.GRAY);
+//                                mWaveLoadingView.setAnimDuration(3000);
+//                                mWaveLoadingView.pauseAnimation();
+//                                mWaveLoadingView.resumeAnimation();
+//                                mWaveLoadingView.cancelAnimation();
+//                                mWaveLoadingView.startAnimation();
+//
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//
+//                    });
+//
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
 
 
 
